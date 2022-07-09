@@ -32,6 +32,8 @@ Jó munkát!
 
     Elvárt eredmény:
         -1523
+
+        //Answer: SELECT MIN(`IndepYear`) FROM `country`;
 */
 
 
@@ -44,6 +46,8 @@ Jó munkát!
 
     Elvárt eredmény:
         CHN Code-ú ország (China)
+
+        // Answer: SELECT * FROM country WHERE IndepYear = (SELECT MIN(IndepYear) FROM country);
 */
 
 
@@ -58,6 +62,8 @@ Jó munkát!
         ID szerint növekvő sorrendben az utolsó 3 darab: 4076, 4078, 4079
 */
 
+        // Answer: SELECT * FROM `city` WHERE `Name` LIKE `District`;
+
 
 /*
 4. feladat (3 pont)
@@ -69,7 +75,8 @@ Jó munkát!
         7 rekord
         országnevek: Bangladesh, Bahrain, Kuwait, Mauritania, Qatar, Sudan, Sierra Leone
 */
-
+        // Answer: SELECT Name, HeadOfState FROM country
+                           WHERE HeadOfState LIKE '%Ahmad%' OR HeadOfState LIKE '%Ahmed%' OR HeadOfState LIKE '%Hamad%';
 
 /*
 5. feladat (3 pont)
@@ -81,7 +88,7 @@ Jó munkát!
         10 rekord
         kontinensek: Oceania (7 db), Europe (2), South America (1)
 */
-
+        // Answer: SELECT * FROM country WHERE LifeExpectancy IS NULL AND Population >= 1;
 
 /*
 6. feladat (2 pont)
@@ -93,6 +100,8 @@ Jó munkát!
         63 rekord
 */
 
+        //Answer: SELECT Code, Name , GNP , GNPOld FROM country WHERE GNPOld>GNP;
+
 
 /*
 7. feladat (4 pont)
@@ -103,7 +112,7 @@ Jó munkát!
     Elvárt eredmény:
         29 rekord
 */
-
+        /// Answer: SELECT * FROM countrylanguage WHERE Language LIKE '%ian' GROUP BY Language ORDER by Language ASC;
 
 /*
 8. feladat (4 pont)
@@ -116,6 +125,8 @@ Jó munkát!
         Western Europe: 9
         Eastern Europe 10
 */
+
+        ///Answer: SELECT Region, COUNT(*) FROM country WHERE Region LIKE '%Europe%' GROUP BY Region;
 
 
 /*
@@ -131,6 +142,10 @@ Jó munkát!
         utolsó országkód: ZWE
 */
 
+        /// Answer: SELECT Code,country.Name, city.Name FROM country
+                           LEFT JOIN city ON country.Capital = city.ID
+                           ORDER BY country.Name ASC;
+
 
 /*
 10. feladat (3 pont)
@@ -141,7 +156,7 @@ Jó munkát!
         10 rekord
         a városok ID-ja: 61, 62, 1791, 2316, 2317, 2728, 2805, 2806, 3333, 3538
 */
-
+    // Answer: SELECT * FROM city WHERE Population LIKE '___';
 
 /*
 11. feladat (5 pont)
@@ -154,7 +169,10 @@ Jó munkát!
         35 rekord
         országkódok, amelyek szerepelnek a listában: DNK, FIN, FRO, ISL, NOR, SJM, SWE
 */
-
+        Answer:
+        SELECT city.ID,city.Name,city.CountryCode,city.District,city.Population
+        FROM city INNER JOIN country ON city.CountryCode = country.Code WHERE country.Region
+        LIKE '%Nordic Countries%' ORDER BY city.CountryCode, city.Population DESC;
 
 /*
 12. feladat (5 pont)
@@ -170,6 +188,8 @@ Jó munkát!
         legnagyobb: Caribbean (11)
 */
 
+        Answer: SELECT Region, COUNT(*) AS 'number' FROM country WHERE IndepYear IS NULL OR IndepYear < 1500 GROUP BY (Region) ORDER BY  (COUNT(*)) DESC;
+
 
 /*
 13. feladat (6 pont)
@@ -180,6 +200,12 @@ Jó munkát!
         16 rekord
         országkódok: ABW, ANT, BHR, BRN, COK, DNK, ISL, JPN, KWT, MAC, MCO, MDV, MYS, NOR, PRI, TTO
 */
+
+    Answer:SELECT * FROM country
+                   INNER JOIN countrylanguage
+                   ON countrylanguage.CountryCode = country.Code
+                   WHERE countrylanguage.Language LIKE 'English'
+                   AND countrylanguage.IsOfficial = 'F';
 
 
 /*
@@ -192,6 +218,8 @@ Jó munkát!
         országkódok: ATA, ATF, BVT, HMD, IOT, SGS, UMI
 */
 
+        Answer: SELECT * FROM city RIGHT JOIN country ON country.Code = city.CountryCode WHERE city.Name IS NULL;
+
 
 /*
 15. feladat (6 pont)
@@ -202,6 +230,12 @@ Jó munkát!
     Elvárt eredmény:
         65 rekord
 */
+
+        Answer: SELECT country.Name, country.Continent,country.Region,countrylanguage.Language, (Percentage) AS Percentage
+        FROM countrylanguage
+        INNER JOIN country
+        ON countrylanguage.CountryCode = country.Code
+        WHERE Percentage = 0;
 
 
 -- ---------------------------------------------------------------------------------------------------------------------

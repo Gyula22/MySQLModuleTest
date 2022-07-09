@@ -46,6 +46,28 @@ Kritériumok az adatbázissal kapcsolatban:
 
 */
 
+Elso Tabla:
+
+CREATE TABLE `modulzarooooooo`.`registeredUsers` (
+`id` INT(100) NOT NULL AUTO_INCREMENT ,
+ `userName` VARCHAR(100) NOT NULL ,
+ `emailAddress` VARCHAR(100) NOT NULL ,
+ `password` INT(100) NOT NULL ,
+ active` BOOLEAN NOT NULL ,
+ `CreationDate` DATE NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+
+Masodik tabla:
+
+
+`CREATE TABLE `modulzarooooooo`.`messagedata` (
+`mesasgeDataId` INT(100) NOT NULL AUTO_INCREMENT ,
+`senderName` VARCHAR(100) NOT NULL ,
+`receiverName` VARCHAR(100) NOT NULL ,
+`message` TEXT NOT NULL ,
+`MessageSendingTime` DATE NOT NULL ,
+`answerMessage` VARCHAR(100) NOT NULL,
+` PRIMARY KEY (`mesasgeDataId`)) ENGINE = InnoDB;
+
 
 -- ---------------------------------------------------------------------------------------------------------------------
 
